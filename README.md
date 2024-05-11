@@ -34,8 +34,8 @@ We use and recommend python 3.8,  torch 2.1.1, torchvision 0.16.1, torchaudio 0.
 The torch installation command we used is `pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118`. If you want to use the same torch, uncomment the third line of setup.sh.
 
 ```
-conda create --name any_name_you_want python=3.8
-conda activate any_name_you_want
+conda create --name spafpn python=3.8
+conda activate spafpn
 cd .../.../SPAFPN-main
 sh setup.sh
 ```
@@ -98,4 +98,14 @@ Get Heatmap. Require `pip install Pillow>=10.0.1 grad_cam>=1.5.0`
 
 Calculate the indicators of the module.
 
+## Acknowledgements
+The implementation is based on [Ultralytics](https://github.com/ultralytics/ultralytics) and also borrow some codes from below projects. Thanks for their great open-source codes.
 
+<details><summary>others</summary>
+
+* [DCN](https://github.com/OpenGVLab/InternImage/tree/master/detection)
+* [HGBlock](https://github.com/PaddlePaddle/PaddleClas)
+* [GElan](https://github.com/WongKinYiu/yolov9)
+* [Dysample](https://github.com/tiny-smart/dysample)
+
+</details>

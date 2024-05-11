@@ -29,7 +29,7 @@ In this paper, we propose the Scarf Path Aggregation Feature Pyramid Network (SP
 
 Create environmemt. 
 
-Make sure the torch version matches cuda.
+Make sure the **torch version matches cuda**.
 We use and recommend python 3.8,  torch 2.1.1, torchvision 0.16.1, torchaudio 0.9.0 and cuda 11.8.
 The torch installation command we used is `pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118`. If you want to use the same torch, uncomment the third line of setup.sh.
 
@@ -41,14 +41,61 @@ sh setup.sh
 ```
 - Datasets
 
+Download the [Microsoft COCO2017](http://cocodataset.org) datasets
+
 Place the dataset as shown in `SPAFPN-main/ultralytics/cfg/datasets/coco.yaml` and `SPAFPN-main/ultralytics/cfg/datasets/coco-seg.yaml`.
 
-And convert it to YOLO format by **COCO2YOLO.py**.
+And convert its labels to YOLO format by **COCO2YOLO.py**.
 
 
 ## Train
+All our models train on 2 Nvidia RTX4090 GPUs. Our batch size is limited to 128, 64, and 48 for nano, small, and medium sizes of the model during training. The only exception is that the batch size of SPAFPN-HG-M is set to 32. If conditions permit, it is recommended to use the larger **batch** of up to 128 and multiples of 8. 
+
+- Single GPU Train
+```
+# [] for optional. det/seg
+[CUDA_VISIBLE_DEVICES=X] python train.py --data coco.yaml/coco-seg.yaml --yaml SPAFPNn-C2f.yaml/SPAFPNn-C2f-seg.yaml --batch 64 --device X [--resume XXX.pt]
+```
+- Multiple GPUs Train
+```
+# [] for optional. det/seg
+[CUDA_VISIBLE_DEVICES=0,1[,2,3,4,5,6,7]] python -m torch.distributed.launch --nproc_per_node=X train.py --data coco.yaml/coco-seg.yaml --yaml SPAFPNn-C2f.yaml/SPAFPNn-C2f-seg.yaml --batch 128 --device 0,1[,2,3,4,5,6,7] [--resume XXX.pt]
+```
 
 ## Evaluate
+- val
+```
+[CUDA_VISIBLE_DEVICES=X] python val.py --data coco.yaml/coco-seg.yaml --weight weights/SPAFPNn-C2f.pt --batch 32
+```  
+- fps(half)
+```
+[CUDA_VISIBLE_DEVICES=X] python val.py --data coco.yaml/coco-seg.yaml --weight weights/SPAFPNn-C2f.pt --batch 32 --half True
+```  
+- val(softnms)
+```
+[CUDA_VISIBLE_DEVICES=X] python val.py --data coco.yaml/coco-seg.yaml --weight weights/SPAFPNn-C2f.pt --batch 32 --softnms True
+```
 
+## Predict
+```
+python predict.py --source XXXX.XXX --weight weights/SPAFPNn-C2f.pt
+```
+
+## Other tools
+- YOLO2COCO.py
+
+Convert YOLO format labels to COCO format.
+
+- get_metrice.py
+
+Get COCO/TIDE metrice. Require `pip install pycocotools>=2.0.6 tidecv>=1.0.1`.
+
+- heatmap.py
+
+Get Heatmap. Require `pip install Pillow>=10.0.1 grad_cam>=1.5.0`
+
+- module_profile.py
+
+Calculate the indicators of the module.
 
 

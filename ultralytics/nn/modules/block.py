@@ -21,10 +21,10 @@ except ModuleNotFoundError:
 
 
 __all__ = ('DFL', 'HGBlock', 'HGStem', 'SPP', 'SPPF', 'C1', 'C2', 'C3', 'C2f', 'C3x', 'C3TR', 'C3Ghost',
-           'GhostBottleneck', 'Bottleneck', 'BottleneckCSP', 'Proto', 'RepC3', 'DCNv3C2f', 'DCNv4C2f',
-           'PyramidUpfusion', 'PyramidDownfusion', 'PyramidUpfusionv2', 'PyramidDownfusionv2', 'PyramidfusionP4',
-           'MultGLPAN', 'MultGLFPN', 'MultGLPANc', 'MultGLFPNc', 'RepNCSPELAN4', 'ADown'
-           )
+           'GhostBottleneck', 'Bottleneck', 'BottleneckCSP', 'BottleneckDCNv3', 'BottleneckDCNv4', 'Proto', 'RepC3',
+           'DCNv3SingleConv', 'DCNv3C2f', 'DCNv4C2f', 'PyramidUpfusion', 'PyramidDownfusion', 'PyramidUpfusionv2',
+           'PyramidDownfusionv2', 'PyramidfusionP4', 'MultGLPAN', 'MultGLFPN', 'MultGLPANc', 'MultGLFPNc',
+           'RepNCSPELAN4', 'ADown', 'DySample')
 
 
 class DFL(nn.Module):

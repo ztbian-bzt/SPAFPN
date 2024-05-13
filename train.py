@@ -19,6 +19,8 @@ def get_args(add_help=True):
     parser.add_argument('--amp', default=True, type=bool, help='Automatic Mixed Precision (AMP) training')
     parser.add_argument('--freeze', default=None,
                         help='freeze first n layers, or freeze list of layer indices during training')
+    # parser.add_argument('--local-rank', default=0, type=int,
+    #                     help='for higher version of torch to use python -m torch.distributed.launch')
     # more args can be modified at ultralytics/cfg/default.yaml
     return parser
 

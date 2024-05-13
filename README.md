@@ -61,7 +61,7 @@ All our models train on 2 Nvidia RTX4090 GPUs. Our batch size is limited to 128,
 - Multiple GPUs Train
 ```
 # [] for optional. det/seg
-[CUDA_VISIBLE_DEVICES=0,1[,2,3,4,5,6,7]] python -m torch.distributed.launch --nproc_per_node=X train.py --data coco.yaml/coco-seg.yaml --yaml SPAFPNn-C2f.yaml/SPAFPNn-C2f-seg.yaml --batch 128 --device 0,1[,2,3,4,5,6,7] [--resume XXX.pt]
+[CUDA_VISIBLE_DEVICES=0,1[,2,3,4,5,6,7]] torchrun --nproc_per_node=X  [--master_port='29501'] train.py --data coco.yaml/coco-seg.yaml --yaml SPAFPNn-C2f.yaml/SPAFPNn-C2f-seg.yaml --batch 128 --device 0,1[,2,3,4,5,6,7] [--resume XXX.pt]
 ```
 
 ## Evaluate

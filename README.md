@@ -47,6 +47,8 @@ Place the dataset as shown in `SPAFPN-main/ultralytics/cfg/datasets/coco.yaml` a
 
 And convert its labels to YOLO format by **COCO2YOLO.py**.
 
+A tiny dataset([coco128](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/coco128.rar)) for quick start.
+
 
 ## Train
 All our models train on 2 Nvidia RTX4090 GPUs. Our batch size is limited to 128, 64, and 48 for nano, small, and medium sizes of the model during training. The only exception is that the batch size of SPAFPN-HG-M is set to 32. If conditions permit, it is recommended to use the larger **batch** which is up to 128 and the multiples of 8. 

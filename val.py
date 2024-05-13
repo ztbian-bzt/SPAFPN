@@ -17,6 +17,8 @@ def get_args(add_help=True):
     parser.add_argument('--half', default=False, type=bool, help='use half precision (FP16)')
     parser.add_argument('--augment', default=False, type=bool, help='apply image augmentation to val sources')
     parser.add_argument('--softnms', default=False, type=bool, help='use soft-nms for val')
+    parser.add_argument('--split', default='val', type=str,
+                        help="dataset split to use for validation, i.e. 'val', 'test' or 'train'")
     # more args can be modified at ultralytics/cfg/default.yaml
     return parser
 
@@ -26,7 +28,7 @@ def main(args):
     if visible is None:
         visible = 0
     model = YOLO(args.weight)
-    model.val(data=args.data, split='val', imgsz=args.imgsz, batch=args.batch, save_json=args.save_json,
+    model.val(data=args.data, split=args.split, imgsz=args.imgsz, batch=args.batch, save_json=args.save_json,
               device=visible, iou=args.iou, conf=args.conf, half=args.half, augment=args.augment, softnms=args.softnms)
 
 

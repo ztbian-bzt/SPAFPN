@@ -45,7 +45,7 @@ Download the [Microsoft COCO2017](http://cocodataset.org) datasets
 
 Place the dataset as shown in `SPAFPN-main/ultralytics/cfg/datasets/coco.yaml` and `SPAFPN-main/ultralytics/cfg/datasets/coco-seg.yaml`.
 
-And convert its labels to YOLO format by **COCO2YOLO.py**.
+And convert its labels for object detection to YOLO format by **COCO2YOLO.py**. Run twice to get the labels for train and val.
 
 A tiny dataset([coco128](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/coco128.rar)) for quick start.
 
@@ -100,6 +100,10 @@ Get Heatmap. Require `pip install Pillow>=10.0.1 grad_cam>=1.5.0`
 - module_profile.py
 
 Calculate the indicators of the module.
+
+- COCO2YOLO-seg.py
+
+Get the coco-seg dataset labels.
 
 ## Acknowledgements
 The implementation is based on [Ultralytics](https://github.com/ultralytics/ultralytics) and also borrow some codes from below projects. Thanks for their great open-source codes.

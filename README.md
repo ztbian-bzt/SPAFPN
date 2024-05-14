@@ -3,17 +3,17 @@ In this paper, we propose the Scarf Path Aggregation Feature Pyramid Network (SP
 ## Models
 ### Object Detection(COCO)
 
-|Model|Size|Param.| GFLOPs |mAP<sup>val</sup><sub>50-95</sub>|FPS<sub>RTX4090,half,b32,pytorch</sub>|
+|Model|Size|Param.| GFLOPs | mAP<sup>val</sup><sub>50-95</sub> |FPS<sub>RTX4090,half,b32,pytorch</sub>|
 |---|---|---|---|---|---|
-|[SPAFPN-C2f-n](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-C2f.pt)|640|3.7M| 10.7   |41.3%|787|
-|[SPAFPN-C2f-s](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-C2f.pt)|640|13.1M| 34.9   |47.3%|573|
-|[SPAFPN-C2f-m](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-C2f.pt)|640|28.3M| 89.4   |50.7%|403|
-|[SPAFPN-GELAN-N](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-GELAN.pt)|640|3.4M| 10.9   |42.7%|579|
-|[SPAFPN-GELAN-S](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-GELAN.pt)|640|11.8M| 35.6   |48.0%|494|
-|[SPAFPN-GELAN-M](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-GELAN.pt)|640|23.8M| 81.7   |51.0%|343|
-|[SPAFPN-HG-N](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-HG.pt)|640|3.4M| 11.4   |42.6%|661|
-|[SPAFPN-HG-S](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-HG.pt)|640|11.9M| 37.7   |48.2%|516|
-|[SPAFPN-HG-M](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-HG.pt)|640|25.0M| 90.5   |51.3%|351|
+|[SPAFPN-C2f-n](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-C2f.pt)|640|3.7M|10.7|41.2%|787|
+|[SPAFPN-C2f-s](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-C2f.pt)|640|13.1M|34.9|47.2%|573|
+|[SPAFPN-C2f-m](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-C2f.pt)|640|28.3M|89.4|50.6%|403|
+|[SPAFPN-GELAN-N](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-GELAN.pt)|640|3.4M|10.9|42.6%|579|
+|[SPAFPN-GELAN-S](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-GELAN.pt)|640|11.8M|35.6|47.9%|494|
+|[SPAFPN-GELAN-M](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-GELAN.pt)|640|23.8M|81.7|50.9%|343|
+|[SPAFPN-HG-N](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-HG.pt)|640|3.4M|11.4|42.4%|661|
+|[SPAFPN-HG-S](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-HG.pt)|640|11.9M|37.7|48.1%|516|
+|[SPAFPN-HG-M](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-HG.pt)|640|25.0M|90.5|51.2%|351|
 
 
 ### Instance segmentation(COCO)

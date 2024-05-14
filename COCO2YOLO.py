@@ -19,10 +19,14 @@ def convert(size, box):
     w = box[2]
     h = box[3]
 
-    x = round(x * dw, 6)
-    w = round(w * dw, 6)
-    y = round(y * dh, 6)
-    h = round(h * dh, 6)
+    # x = round(x * dw, 6)
+    x = x * dw
+    # w = round(w * dw, 6)
+    w = w * dw
+    # y = round(y * dh, 6)
+    y = y * dh
+    # h = round(h * dh, 6)
+    h = h * dh
     return (x, y, w, h)
 
 

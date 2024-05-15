@@ -8,7 +8,7 @@ scales: # model compound scaling constants, i.e. 'model=SPAFPNn-HG-seg.yaml' wil
   l: [1.00, 1.00, 512]
   x: [1.00, 1.25, 512]
 
-# YOLOv8.0n backbone
+# HGBlock backbone
 backbone:
   # [from, repeats, module, args]
   - [-1, 1, HGStem, [32, 64]]  # 0-P2/4
@@ -29,7 +29,7 @@ backbone:
   - [-1, 6, HGBlock, [512, 2048, 5, True, False]]
   - [-1, 6, HGBlock, [512, 2048, 5, True, True]]  # 13-stage 4
 
-# YOLOv8.0n head
+# SPAFPN head
 head:
   - [[4, 10, 13], 1, PyramidfusionP4, [512]] # 14
 

@@ -34,4 +34,8 @@ What we are really saying here is that if a more complex operation (e.g., additi
 - ***In Table 1, which result can indicate "a high level of speed" (as claimed in Line 235-236), and what does "it" (Line 235) refer to?***
 
 **Reply:** Here is the imperfection of our expression. The sentence in Line 235-236 is `Also, despite the sacrifice in FPS, it still maintains a high level of speed in the above real-time object detection methods.` This sentence can be reorganized as `Also, despite sacrificing FPS compared to YOLOv8-M (464), SPAFPN-C2f-M (403) still maintains a high level of speed in the above real-time object detection methods (e.g YOLOv7(357), DAMO-YOLO-M(222), Gold-YOLO-M(351)).`
- 
+
+
+ - ***Some writing format issues: e.g., there should be a blank space before the parentheses, Pyramid Fusion(PFusion) -> Pyramid Fusion (PFusion).***
+
+**Reply:** Thank you for pointing out our writing format issues. We will correct it in the next version of the paper and double-check for other writing format issues.

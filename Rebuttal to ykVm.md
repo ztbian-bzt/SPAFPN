@@ -25,4 +25,13 @@ What we are really saying here is that if a more complex operation (e.g., additi
 - ***The section on object detection in the first paragraph (Lines 19-23) appears to be loosely related to the paper's main topic. The authors could consider removing this part and instead adding more details to discuss the background, technical developments, and challenges in real-time object detection.***
 
 **Reply:**
+
+- ***See Questions for more details.***
+- ***The idea of "modularization" only mentioned twice in this paper and is not well explained. Is it the same as the concept of "Light Fusion, Heavy Decouple"? If true, the authors can consider avoiding the duplicated concept with different words.***
+
+**Reply:** The idea of "modularization" here means versatility and portability. We can easily apply it to networks with PAFPN or similar structures. The feature extraction modules and sampling tools are also very easy to replace at the code level. Just as we can apply it to RT-DETR in a very short time.
+
+- ***In Table 1, which result can indicate "a high level of speed" (as claimed in Line 235-236), and what does "it" (Line 235) refer to?***
+
+**Reply:** Here is the imperfection of our expression. The sentence in Line 235-236 is `Also, despite the sacrifice in FPS, it still maintains a high level of speed in the above real-time object detection methods.` This sentence can be reorganized as `Also, despite sacrificing FPS compared to YOLOv8-M (464), SPAFPN-C2f-M (403) still maintains a high level of speed in the above real-time object detection methods (e.g YOLOv7(357), DAMO-YOLO-M(222), Gold-YOLO-M(351)).`
  

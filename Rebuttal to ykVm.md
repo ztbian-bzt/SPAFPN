@@ -1,0 +1,3 @@
+We express our sincere gratitude for your professional and comprehensive review. And we will provide responses to each of your quesion in the 'Weaknesses' section, 'Questions' section and 'Limitations' section.
+
+- ***1.	The main contribution of this paper needs further clarification. The authors identified the inefficient cross-scale propagation problem in PAFPN. However, the efficiency improvements in SPAFPN appear to derive from minor technical adjustments, such as the parametric sampling technique and the reduction of processed channels in the main feature extraction block. Notably, the primary contribution, "PFusion," seems to increase the delay in back-propagation (Line 145).***

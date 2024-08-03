@@ -20,6 +20,23 @@ Maybe we have a problem with our expression here.
 What we are really saying here is that if a more complex operation (e.g., additional extraction block) is added after PFusion, it will result in higher latency than if it is added at other places such as after decoupling. This is the main reason why we adopted "Light Fusion". We can find from Table 6 in Section 4.3.2 that adding more complex operations after PFusion leads to a significant rise in train FPS. This is intolerable for us with insufficient computing resources. So, this delay only appears in ablation experiments.
 
 
+- ***Some claims about SPAFPN lack clear illustration and experimental validation. For example, although the authors suggest processing only half the channels to reduce computational costs (Lines 196-200), they do not evaluate the effects of varying the proportion of unprocessed channels in their experiments.***
+
+**Reply:** Processing only half the channels to reduce computational costs is a technique commonly used in the real-time domain. This method was first proposed in CSPNet [1], which utilizes duplicate gradient information in the feature extraction module during the network optimization process. The models I mentioned in the first paragraph of the Introduction that were published after 2020 more or less take advantage of this trick as well.
+
+Conventionally, we refer to the processed channels as hidden channels. In [1], they also performed ablation experiments for the proportion of hidden channels in their Table 1. At your request, we have also done similar ablation experiments for our proposed model as follows:
+
+**Ablation study on the proportion of hidden channels in CSP-DCN**
+| Model |e| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub> |
+|---|---|---|---|---|---|
+|SPAFPN-C2f-n|0.25|3.2M|9.7|39.6%|55.6%|
+|SPAFPN-C2f-n|0.5|3.7M|10.7|41.2%|57.3%|
+|SPAFPN-C2f-n|0.75|4.4M|11.9|41.3%|57.4%|
+
+
+where, e represents the proportion of hidden channels. From the above experiments, it can be seen that when e=0.25, the performance will degrade quite significantly. However, when e=0.75, although the computational complexity increases, the performance of the model does not improve. Objectively, both e=0.25 and e=0.5 have some advantages, but in terms of performance, choosing e=0.5 is the better choice.
+
+
 
 - ***I appreciate the efforts in this article. It might be helpful to revisit some of the concepts and paragraphs to ensure a more logical and rigorous paper. For example:***
 - ***The section on object detection in the first paragraph (Lines 19-23) appears to be loosely related to the paper's main topic. The authors could consider removing this part and instead adding more details to discuss the background, technical developments, and challenges in real-time object detection.***

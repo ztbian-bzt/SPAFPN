@@ -41,7 +41,11 @@ where, e represents the proportion of hidden channels. From the above experiment
 - ***I appreciate the efforts in this article. It might be helpful to revisit some of the concepts and paragraphs to ensure a more logical and rigorous paper. For example:***
 - ***The section on object detection in the first paragraph (Lines 19-23) appears to be loosely related to the paper's main topic. The authors could consider removing this part and instead adding more details to discuss the background, technical developments, and challenges in real-time object detection.***
 
-**Reply:**
+**Reply:** Your suggestion is very reasonable. We'll reorganize the first line (Lines 19-26) to make it more relevant to the topic of real-time object detection. Our modified first paragraph shows below:
+
+`Real-time object detection has long been a research hotspot in the field of computer vision, which aims to meet the real-time requirements of object detection in industrial production, automatic driving, remote sensing analysis, etc. Therefore, researchers always strive to keep a good balance between performance and speed of detectors. Nowadays, a large number of excellent models have also been proposed, such as SSD, FCOS, YOLO series, CenterNet, RT-DETR, etc. The backbone network of the detector is also evolving very rapidly, from the earliest VGG, to DarkNet, CSPNet, MoblieNet, and even a series of lightweight backbone networks based on ideas of CSP and ELAN in recent years.`
+
+Because there are too many references in this paragraph, the rebuttal version omits them. We will revise this paragraph in the next version of the paper and add due citations.
 
 - ***See Questions for more details.***
 - ***The idea of "modularization" only mentioned twice in this paper and is not well explained. Is it the same as the concept of "Light Fusion, Heavy Decouple"? If true, the authors can consider avoiding the duplicated concept with different words.***
@@ -56,3 +60,14 @@ where, e represents the proportion of hidden channels. From the above experiment
  - ***Some writing format issues: e.g., there should be a blank space before the parentheses, Pyramid Fusion(PFusion) -> Pyramid Fusion (PFusion).***
 
 **Reply:** Thank you for pointing out our writing format issues. We will correct it in the next version of the paper and double-check for other writing format issues.
+
+
+- ***The YOLO series' inherent limitations, including NMS post-processing, may hinder SPAFPN's effectiveness in real-time object detection. While the authors showed in the appendix that NMS limitations can be mitigated with recent technical advances, they did not discuss whether SPAFPN can integrate with other end-to-end detectors like RT-DETR.***
+
+**Reply:** 
+
+
+*[1] Chien-Yao Wang, Hong-Yuan Mark Liao, Yueh-Hua Wu, Ping-Yang Chen, Jun-Wei Hsieh, and I-Hau Yeh. Cspnet: A new backbone that can enhance learning capability of cnn. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition workshops, pages 390–391, 2020.*
+
+
+

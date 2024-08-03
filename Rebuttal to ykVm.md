@@ -64,10 +64,14 @@ Because there are too many references in this paragraph, the rebuttal version om
 
 - ***The YOLO series' inherent limitations, including NMS post-processing, may hinder SPAFPN's effectiveness in real-time object detection. While the authors showed in the appendix that NMS limitations can be mitigated with recent technical advances, they did not discuss whether SPAFPN can integrate with other end-to-end detectors like RT-DETR.***
 
-**Reply:** 
+**Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models (e.g. RT-DETR[2]), to verify its generality and portability. 
+In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So let's replace it with SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. Due to the problem of slow convergence, the pre-trained weights of the backbone network are widely used in the training of the DETR series of detectors until the latest RT-DETR. So, we provide here the pre-trained version and the trained from scratch version of RT-DETR-SPAFPN-L.
+
 
 
 *[1] Chien-Yao Wang, Hong-Yuan Mark Liao, Yueh-Hua Wu, Ping-Yang Chen, Jun-Wei Hsieh, and I-Hau Yeh. Cspnet: A new backbone that can enhance learning capability of cnn. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition workshops, pages 390–391, 2020.*
+
+*[2] Yian Zhao, Wenyu Lv, Shangliang Xu, Jinman Wei, Guanzhong Wang, Qingqing Dang, Yi Liu, and Jie Chen. Detrs beat yolos on real-time object detection. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 16965–16974, 2024.*
 
 
 

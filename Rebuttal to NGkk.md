@@ -12,6 +12,36 @@ Our method has a gain of 3.9\%/2.3\%/0.4\% mAP in N/S/M size over YOLOv8 when on
 
 **Reply:** The sentence in L121-122 is `This reduces information loss in cross-layer feature interactions, which is especially critical for small and medium-sized models.` It may be that we have problems in expression, here `small and medium-sized models` refer to the N/S size model we proposed. In the case of SPAFPN-C2f-N/S, they do improve performance significantly (3.9\%/2.3\% mAP gains).
 
+- ***In the method section, the author mainly introduces the details of module design and stacks these modules to gain gains. There is a lack of explanation and insight into the module design.***
+
+**Reply:** Thank you for pointing out the gaps in our writing. We will supplement our ideas and explanations for module design. The following explanations will be added in place in the next version of the paper.
+
+**(1) Pyramid Fusion Module**
+
+We design Pyramid Fusion Module to extract global fusion features from multiple scales. Many previous works (e.g. TopFormer[5], FAN[6], Gold-YOLO[1], CFP[7]) employ quite complex feature extraction modules in the multi-scale feature extraction process. However, according to the experimental results in Table 6, we find that although adopting complex feature extraction in the fusion module can bring better performance and inference FPS, it will significantly reduce the training FPS. This is obviously not friendly to researchers who are not rich in computing resources.
+
+Furthermore, take the feature transfer from P5-1 to P3-2 as an example (Figure. 1).
+
+
+$$P3-2 = β_3α_3(P3-1, β_4α_4(P4-1, P5-1))$$①
+
+$$P3-2 = β_3α_3(F(P3-1, P4-1, \textcolor{#FF0000}{P5-1}), P3-1, β_4α_4(P4-1, P5-2, F(P3-1, P4-1,P5-1)))$$②
+
+Where, $α_i$ is a simple alignment operation on the Pi scale, which generally only includes 1*1 convolution for adjusting channel number, up-and-down sampling, and Concatenate operations; $β_i$ is a feature extraction module on Pi scale, which has a much more complex structure than $α_i$; $F$ is the multi-scale feature fusion module.  Equation 1 is the usual PAFPN, and Equation 2 is the SPAFPN version. It can be found that if $F$ is constructed by simple operations similar to $β_i$, there is a P5-1 term in Formula 2 that can reach P3-2 by only one feature extraction module compared with Formula 1. This makes the features on P5-1 more directly accessible to P3-2.
+
+Based on the above ablation experiments and conjectures, we propose the strategy of "Light Fusion, Heavy Decouple" to design Pyramid Fusion more simply. At the same time, the commonly used bilinear up-sampling and Conv down-sampling are replaced, which slightly improves the performance(refer to Table 11).
+
+**(2) Multi-Concat Module**
+
+In the structure of SPAFPN, due to the additional global input obtained by multi-scale fusion, how to decouple the fused global features and combine them with the features of the local layer is a problem that needs to be considered more.
+
+As shown in Figure.3(c), we adopt the practice of concatenate channel after sampling in traditional FPN for adjacent scale input x_high/low and local scale input x_local. We refer to Squeeze-and-excitation[8] and Coordinate attention[9], and treat the global features x_global after aligning scales and channels as the corresponding weight elements of the local features, which are directly weighted by multiplication. Finally, the local features weighted by the global features are obtained.
+
+We also add a set of identity maps such that Mult-Concat can degenerate to the traditional Concat module when the input global feature is empty.
+
+**(3) CSP-DCN Module**
+
+The CSP-DCN module is a neck module proposed to balance model performance and computational complexity. We learn from the structure of CSP[10] and adopt deformable convolution[11] to improve the understanding ability of the model while reducing the number of channels in the feature extraction module. The reduction in the number of channels is based on the presence of duplicate gradient information in the feature extraction module during the network optimization process (evidenced in [10]).
 
 
 *[1] Chengcheng Wang, Wei He, Ying Nie, Jianyuan Guo, Chuanjian Liu, Yunhe Wang, and Kai Han. Gold-yolo: Efficient object detector via gather-and-distribute mechanism. Advances in Neural Information Processing Systems, 36, 2024.*
@@ -21,3 +51,17 @@ Our method has a gain of 3.9\%/2.3\%/0.4\% mAP in N/S/M size over YOLOv8 when on
 *[3] Jocher Glenn. Ultralytics yolov8 release v8.2.0. https://github.com/ultralytics/ultralytics/releases/tag/v8.2.0, 2023.*
 
 *[4] Chien-Yao Wang, I-Hau Yeh, and Hong-Yuan Mark Liao. Yolov9: Learning what you want to learn using programmable gradient information. arXiv preprint arXiv:2402.13616, 2024.*
+
+*[5] Wenqiang Zhang, Zilong Huang, Guozhong Luo, Tao Chen, Xinggang Wang, Wenyu Liu, Gang Yu, and Chunhua Shen. Topformer: Token pyramid transformer for mobile semantic segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 12083–12093, 2022.*
+
+*[6] Xuan Zhou and Xuefeng Wei. Feature aggregation network for building extraction from high-resolution remote sensing images. In Pacific Rim International Conference on Artificial Intelligence, pages 105–116. Springer, 2023.*
+
+*[7] Yu Quan, Dong Zhang, Liyan Zhang, and Jinhui Tang. Centralized feature pyramid for object detection. IEEE Transactions on Image Processing, 2023.*
+
+*[8] Jie Hu, Li Shen, and Gang Sun. Squeeze-and-excitation networks. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 7132–7141, 2018.*
+
+*[9] Qibin Hou, Daquan Zhou, and Jiashi Feng. Coordinate attention for efficient mobile network design. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 13713–13722, 2021.*
+
+*[10] Chien-Yao Wang, Hong-Yuan Mark Liao, Yueh-Hua Wu, Ping-Yang Chen, Jun-Wei Hsieh, and I-Hau Yeh. Cspnet: A new backbone that can enhance learning capability of cnn. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition workshops, pages 390–391, 2020.*
+
+*[11] Wenhai Wang, Jifeng Dai, Zhe Chen, Zhenhang Huang, Zhiqi Li, Xizhou Zhu, Xiaowei Hu, Tong Lu, Lewei Lu, Hongsheng Li, et al. Internimage: Exploring large-scale vision foundation models with deformable convolutions. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 14408–14419, 2023.*

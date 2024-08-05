@@ -54,7 +54,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |YOLOv8-N|-|3.2M|8.7|37.3\%|52.6\%|1115|
 |SPAFPN-C2f-N|-|3.3M|9.9|39.8\%|55.6\%|-|
 |SPAFPN-C2f-N|√|3.7M|10.7|41.2\%|57.3\%|787|
-|YOLOv8-S|-|11.2M|28.6|44.9\%|61.8\%|787|
+|YOLOv8-S|-|11.2M|28.6|44.9\%|61.8\%|767|
 |SPAFPN-C2f-S|-|11.3M|31.7|46.1\%|62.3\%|-|
 |SPAFPN-C2f-S|√|13.1M|34.9|47.2\%|63.7\%|573|
 

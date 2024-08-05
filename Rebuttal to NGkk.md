@@ -2,19 +2,19 @@ We express our sincere gratitude for your professional and comprehensive review.
 
 - ***The proposed method has a low gain (0.4) on large models, which means that spafpn is not necessary when the backbone features are strong enough.***
 
-**Reply:** It is relatively common for real-time object detection to achieve small gains for common datasets (e.g., COCO) on large models, especially when improving only one of the backbone, neck, and head items of real-time object detection. 
+**Reply:** Thank you for your insightful comment regarding the gains on large models. 
 
-For example, the Gold-YOLO [1] series uses YOLOv6 3.0 [2] as its baseline model, and its gains in N/S/M size are 2.6\%/1.1\%/0.7\% mAP, respectively. Compared to SOTA YOLOv8 [3] at that time, its gain was only 2.3\%/0.5\%/-0.4\% mAP. Moreover, in February this year, the open-source YOLOv9 series [4] had a gain of only 1.8\%/0.9\% mAP in S/M size compared with YOLOv8. This is the final gain of YOLOv9 after improving the backbone, neck, and head for real-time object detection.
+It is a common phenomenon for real-time object detection to achieve small gains for common datasets (e.g., COCO) on large models, especially when improving only one of the backbone, neck, and head items of real-time object detection. For example, the Gold-YOLO [1] series uses YOLOv6 3.0 [2] as its baseline model, and its gains in N/S/M size are 2.6\%/1.1\%/0.7\% mAP, respectively. Compared to SOTA YOLOv8 [3] at that time, its gain was only 2.3\%/0.5\%/-0.4\% mAP. Moreover, in February this year, the open-source YOLOv9 series [4] had a gain of only 1.8\%/0.9\% mAP in S/M size compared with YOLOv8. This is the final gain of YOLOv9 after improving the backbone, neck, and head for real-time object detection.
 
 Our method has a gain of 3.9\%/2.3\%/0.4\% mAP in N/S/M size over YOLOv8 when only changing the neck part and can achieve a gain of 5.2\%/3.2\%/1.1\% mAP when also changing the backbone part.
 
 - ***The author claims that cross-scale interactions can help detect small and medium objects(L121-122), but this is not supported by experiments.***
 
-**Reply:** The sentence in L121-122 is `This reduces information loss in cross-layer feature interactions, which is especially critical for small and medium-sized models.` It may be that we have problems in expression, here `small and medium-sized models` refer to the N/S size model we proposed. In the case of SPAFPN-C2f-N/S, they do improve performance significantly (3.9\%/2.3\% mAP gains).
+**Reply:** Thank you for pointing out our mistake in expression. The sentence in L121-122 is `This reduces information loss in cross-layer feature interactions, which is especially critical for small and medium-sized models.` Here `small and medium-sized models` refer to the N/S size models we proposed. In the case of SPAFPN-C2f-N/S, they do improve performance significantly (3.9\%/2.3\% mAP gains). We will change this sentence to `This reduces information loss in cross-layer feature interactions, which is especially critical for the N/S size models' to avoid ambiguity in the next version of the paper.
 
 - ***In the method section, the author mainly introduces the details of module design and stacks these modules to gain gains. There is a lack of explanation and insight into the module design.***
 
-**Reply:** Thank you for pointing out the gaps in our writing. We will supplement our ideas and explanations for module design. The following explanations will be added in place in the next version of the paper.
+**Reply:** Thank you for pointing out the gaps in our writing. We will supplement our ideas and explanations for module design. The following explanations (`(1) Pyramid Fusion Module`, `(2) Multi-Concat Module` and `(3) CSP-DCN Module`) will be added to the next version of the paper in Section 3.2, Section 3.3 and Section 3.4, respectively.
 
 **(1) Pyramid Fusion Module**
 

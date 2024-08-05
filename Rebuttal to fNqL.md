@@ -19,8 +19,6 @@ Thank you for pointing out this similar work, we will add this discussion in the
 **Ablation study on deformable conv in SPAFPN**
 | Model |DCN| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | FPS |
 |---|---|---|---|---|---|
-|SPAFPN-C2f-n|-|-|-|-|-|
-|SPAFPN-C2f-n|√|3.7M|10.7|41.2%|787|
 |SPAFPN-C2f-s|-|-|-|46.9%|-|
 |SPAFPN-C2f-s|√|13.1M|34.9|47.2%|573|
 

@@ -64,7 +64,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |C2f-Backbone-N|PAFPN|3.2M|8.7|37.3\%|52.6\%|1115|
 |C2f-Backbone-N|AFPN|2.3M|8.1|36.8\%|49.8\%|1220|
 |C2f-Backbone-N|EfficientRepBiPAN|3.0M|8.4|37.1\%|52.2\%|914|
-|C2f-Backbone-N|RepGFPN|3.4M|8.9|38.3\%|54.8\%|762|
+|C2f-Backbone-N|RepGFPN|3.4M|8.9|38.3\%|54.8\%|802|
 |C2f-Backbone-N|GD|6.1M|10.9|39.8\%|55.6\%|720|
 |C2f-Backbone-N|SPAFPN|3.7M|10.7|41.2\%|57.3\%|787|
 

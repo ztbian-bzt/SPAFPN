@@ -80,7 +80,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |SPAFPN-HG-M|25.0M|90.5|51.2%|68.4%|351|
 |Deformable DETR|40.0M|173|46.2%|65.2%|<20|
 
-Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So let's replace it with SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. 
+Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. 
 
 Due to the problem of slow convergence, the pre-trained weights of the backbone network are widely used in the training of the DETR series of detectors until the latest RT-DETR. So, we provide here the pre-trained version and the trained from scratch version of RT-DETR-SPAFPN-L.
 

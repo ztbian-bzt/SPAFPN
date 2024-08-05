@@ -6,7 +6,7 @@ We express our sincere gratitude for your professional and comprehensive review.
 
 Our work follows the strategy of "Light Fusion, Heavy Decouple", and uses the convenient Pyramid Fusion module to fuse multi-scale features (" Light Fusion "). And the Multi-Concat module decouples multi-scale features back into individual scales (" Heavy Decouple ").
 
-The ASFF module is similar in effect and structure to our Pyramid Fusion module (the difference is that Pyramid Fusion is more lightweight and uses concatenation to fuse multi-scale features).
+The ASFF module is similar in effect and structure to our Pyramid Fusion module and the main difference is that Pyramid Fusion is more lightweight and uses concatenation to fuse multi-scale features.
 
 In the article of YOLOv4 [2], it has been shown that the performance of ASFF is weaker than that of PAFPN [3], a subsequent proposed Neck structure. Our work SPAFPN complements PAFPN with multi-scale fusion features, and the performance is significantly higher than PAFPN (shown in Table 5). The portability of SPAFPN is also guaranteed.
 
@@ -14,13 +14,15 @@ Thank you for pointing out this similar work, we will add this discussion in the
 
 - ***This paper employs deformable convolutions in the proposed CSP-DCN module and downsampling block. The deformable convolution can bring significant performance gains but increase inference latency for most detectors. What's the performance of SPAFPN without deformable convolution?***
 
-**Reply:** Thank you for your constructive suggestions for comparing SPAFPN without deformable convolution. Now you can see the performance comparison as follows. In comparison, we replace the deformable convolution in CSP-DCN module and downsampling block with Conv and Pooling with Conv, respectively.
+**Reply:** Thank you for your constructive suggestions for comparing SPAFPN without deformable convolution. We have conducted the relevant experiments, and the performance comparison is as follows:
 
 **Ablation study on deformable conv in SPAFPN**
 | Model |DCN| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | FPS |
 |---|---|---|---|---|---|
 |SPAFPN-C2f-s|-|15.2M|37.7|46.9%|662|
 |SPAFPN-C2f-s|√|13.1M|34.9|47.2%|573|
+
+ In comparison, we replace the deformable convolution in CSP-DCN module and downsampling block with Conv and Pooling with Conv, respectively.
 
 - ***Inference latency is an important metric for real-time detectors. Please present the inference FPS of baseline and SPAFPN in Table 2, Table 3, and Table 5 for clear comparisons.***
 
@@ -68,7 +70,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |C2f-Backbone-N|GD|6.1M|10.9|39.8\%|55.6\%|720|
 |C2f-Backbone-N|SPAFPN|3.7M|10.7|41.2\%|57.3\%|787|
 
-- ***4.	As object detection is a well-established area, improving over state-of-the-art is important. Can the SPAFPN improve current leading DETR frameworks (e.g., Deformable-DETR)?***
+- ***As object detection is a well-established area, improving over state-of-the-art is important. Can the SPAFPN improve current leading DETR frameworks (e.g., Deformable-DETR)?***
 
 **Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models, to verify its generality and portability. However, Deformable-DETR is not a real-time object detection domain and it takes a long time to train (325+ hours on NVIDIA Tesla V100 GPU). The performance of Deformable-DETR is as follows:
 

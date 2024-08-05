@@ -19,7 +19,7 @@ Thank you for pointing out this similar work, we will add this discussion in the
 **Ablation study on deformable conv in SPAFPN**
 | Model |DCN| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | FPS |
 |---|---|---|---|---|---|
-|SPAFPN-C2f-s|-|-|-|46.9%|-|
+|SPAFPN-C2f-s|-|15.2M|37.7|46.9%|662|
 |SPAFPN-C2f-s|√|13.1M|34.9|47.2%|573|
 
 - ***Inference latency is an important metric for real-time detectors. Please present the inference FPS of baseline and SPAFPN in Table 2, Table 3, and Table 5 for clear comparisons.***

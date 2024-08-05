@@ -32,9 +32,9 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |YOLOv5-seg-N|2.0M|27.6\%|23.4\%|-|
 |YOLOv5-seg-S|7.6M|37.6\%|31.7\%|-|
 |YOLOv5-seg-M|22.0M|45.0\%|37.1\%|-|
-|RTMDet-Ins-tiny|5.6M|40.5\%|35.4\%|-|
-|RTMDet-Ins-S|10.2M|44.0\%|38.7\%|-|
-|RTMDet-Ins-M|27.6M|48.8\%|42.1\%|-|
+|RTMDet-Ins-tiny|5.6M|40.5\%|35.4\%|647|
+|RTMDet-Ins-S|10.2M|44.0\%|38.7\%|522|
+|RTMDet-Ins-M|27.6M|48.8\%|42.1\%|341|
 |YOLOv8-seg-N|3.4M|36.7\%|30.5\%|876|
 |YOLOv8-seg-S|11.8M|44.6\%|36.8\%|676|
 |YOLOv8-seg-M|27.3M|49.9\%|40.8\%|388|

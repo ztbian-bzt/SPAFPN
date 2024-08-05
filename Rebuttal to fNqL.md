@@ -35,18 +35,18 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |RTMDet-Ins-tiny|5.6M|40.5\%|35.4\%|-|
 |RTMDet-Ins-S|10.2M|44.0\%|38.7\%|-|
 |RTMDet-Ins-M|27.6M|48.8\%|42.1\%|-|
-|YOLOv8-seg-N|3.4M|36.7\%|30.5\%|-|
-|YOLOv8-seg-S|11.8M|44.6\%|36.8\%|-|
-|YOLOv8-seg-M|27.3M|49.9\%|40.8\%|-|
-|SPAFPN-C2f-seg-N|4.0M|41.1\%|34.6\%|-|
-|SPAFPN-C2f-seg-S|13.8M|47.4\%|39.8\%|-|
-|SPAFPN-C2f-seg-M|29.7M|50.7\%|42.4\%|-|
-|SPAFPN-GELAN-seg-N|3.7M|42.4\%|35.7\%|-|
-|SPAFPN-GELAN-seg-S|12.5M|48.3\%|40.7\%|-|
-|SPAFPN-GELAN-seg-M|25.2M|51.3\%|42.8\%|-|
-|SPAFPN-HG-seg-N|3.7M|42.7\%|36.0\%|-|
-|SPAFPN-HG-seg-S|12.6M|48.5\%|40.8\%|-|
-|SPAFPN-HG-seg-M|26.4M|51.6\%|43.3\%|-|
+|YOLOv8-seg-N|3.4M|36.7\%|30.5\%|876|
+|YOLOv8-seg-S|11.8M|44.6\%|36.8\%|676|
+|YOLOv8-seg-M|27.3M|49.9\%|40.8\%|388|
+|SPAFPN-C2f-seg-N|4.0M|41.1\%|34.6\%|637|
+|SPAFPN-C2f-seg-S|13.8M|47.4\%|39.8\%|497|
+|SPAFPN-C2f-seg-M|29.7M|50.7\%|42.4\%|338|
+|SPAFPN-GELAN-seg-N|3.7M|42.4\%|35.7\%|513|
+|SPAFPN-GELAN-seg-S|12.5M|48.3\%|40.7\%|430|
+|SPAFPN-GELAN-seg-M|25.2M|51.3\%|42.8\%|291|
+|SPAFPN-HG-seg-N|3.7M|42.7\%|36.0\%|556|
+|SPAFPN-HG-seg-S|12.6M|48.5\%|40.8\%|445|
+|SPAFPN-HG-seg-M|26.4M|51.6\%|43.3\%|302|
 
 **Table 3**
 | Model |Full-Node Strategy| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|FPS |

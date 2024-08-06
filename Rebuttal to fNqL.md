@@ -17,7 +17,7 @@ Thank you for pointing out this similar work, we will add this discussion in the
 **Reply:** Thank you for your constructive suggestions for comparing SPAFPN without deformable convolution. We have conducted the relevant experiments, and the performance comparison is as follows:
 
 **Ablation study on deformable conv in SPAFPN**
-| Model |DCN| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | FPS |
+| Model |DCN| Param. | GFLOPs | $mAP_{val}^{50-95}$ | FPS |
 |---|---|---|---|---|---|
 |SPAFPN-C2f-s|-|15.2M|37.7|46.9%|662|
 |SPAFPN-C2f-s|√|13.1M|34.9|47.2%|573|
@@ -26,10 +26,42 @@ Thank you for pointing out this similar work, we will add this discussion in the
 
 - ***Inference latency is an important metric for real-time detectors. Please present the inference FPS of baseline and SPAFPN in Table 2, Table 3, and Table 5 for clear comparisons.***
 
-Thank you for pointing out that we are missing FPS data in some tables. Table 2, Table 3, and Table 5 after updating the FPS data are shown below. We will update the table in the next version of the paper.
+Thank you for pointing out that we are missing FPS data in some tables. Table 2, Table 3, and Table 5 after updating the FPS data are shown in official comment. We will update the table in the next version of the paper.
+
+
+- ***As object detection is a well-established area, improving over state-of-the-art is important. Can the SPAFPN improve current leading DETR frameworks (e.g., Deformable-DETR)?***
+
+**Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models, to verify its generality and portability. However, Deformable-DETR[4] is not a real-time object detection domain and it takes a long time to train (325+ hours on NVIDIA Tesla V100 GPU). The performance of Deformable-DETR is as follows:
+
+|Model|Param.| GFLOPs | $mAP_{val}^{50-95}$ | $mAP_{val}^{50}$|FPS |
+|---|---|---|---|---|---|
+|SPAFPN-C2f-M|28.3M|89.4|50.6%|67.4%|403|
+|SPAFPN-HG-M|25.0M|90.5|51.2%|68.4%|351|
+|Deformable DETR|40.0M|173|46.2%|65.2%|<20|
+
+The application of SPAFPN on Deformable-DETR was intractable for our computational resources within the period of the official review. Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. RT-DETR achieves SOTA in the DETR family, and alleviates the common problems of too time-consuming training and extremely slow inference speed.
+
+In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. We will provide versions that apply SPAFPN to RT-DETR-R18 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_6x_coco.yml) and RT-DETR-R34 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r34vd_6x_coco.yml).
+
+|Model|Param.|$mAP_{val}^{50-95}$ | $mAP_{val}^{50}$|
+|---|---|---|---|
+|RT-DETR-R18|20M|46.4%|63.7%|
+|RT-DETR-SPAFPN-R18|21M|in training|in training|
+|RT-DETR-R34|31M|48.9%|66.8%|
+|RT-DETR-SPAFPN-R34|33M|in training|in training|
+
+The code for RT-DETR-SPAFPN is available. The performance may not be optimal as there was no time to make any hyperparameter adjustments. Some models are still being trained and are expected to be completed within the time frame of the official review. We will inform you as soon as the training is finished. Please accept our sincere apologies.
+
+
+
+
+- ***There is a typo in line 137: "Conv-BN-SLIU" -> "Conv-BN-SiLU"***
+
+**Reply:** Thank you for pointing out our typos. We will correct it in the next version of the paper and carefully check other typos that may appear.
+
 
 **Table 2**
-| Model | Param. | mAP<sup>box</sup><sub>50-95</sub> | mAP<sup>mask</sup><sub>50-95</sub> |FPS|
+| Model | Param. | $mAP_{box}^{50-95}$ | $mAP_{mask}^{50-95}$ |FPS|
 |---|---|---|---|---|
 |YOLOv5-seg-N|2.0M|27.6\%|23.4\%|861|
 |YOLOv5-seg-S|7.6M|37.6\%|31.7\%|690|
@@ -51,7 +83,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |SPAFPN-HG-seg-M|26.4M|51.6\%|43.3\%|302|
 
 **Table 3**
-| Model |Full-Node Strategy| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|FPS |
+| Model |Full-Node Strategy| Param. | GFLOPs | $mAP_{val}^{50-95}$ | $mAP_{val}^{50}$|FPS |
 |---|---|---|---|---|---|---|
 |YOLOv8-N|-|3.2M|8.7|37.3\%|52.6\%|1115|
 |SPAFPN-C2f-N|-|3.3M|9.9|39.8\%|55.6\%|930|
@@ -61,7 +93,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |SPAFPN-C2f-S|√|13.1M|34.9|47.2\%|63.7\%|573|
 
 **Table 5**
-|Backbone|Neck|Param.| GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|FPS |
+|Backbone|Neck|Param.| GFLOPs | $mAP_{val}^{50-95}$ | $mAP_{val}^{50}$|FPS |
 |---|---|---|---|---|---|---|
 |C2f-Backbone-N|PAFPN|3.2M|8.7|37.3\%|52.6\%|1115|
 |C2f-Backbone-N|AFPN|2.3M|8.1|36.8\%|49.8\%|1220|
@@ -69,38 +101,6 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |C2f-Backbone-N|RepGFPN|3.4M|8.9|38.3\%|54.8\%|802|
 |C2f-Backbone-N|GD|6.1M|10.9|39.8\%|55.6\%|720|
 |C2f-Backbone-N|SPAFPN|3.7M|10.7|41.2\%|57.3\%|787|
-
-- ***As object detection is a well-established area, improving over state-of-the-art is important. Can the SPAFPN improve current leading DETR frameworks (e.g., Deformable-DETR)?***
-
-**Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models, to verify its generality and portability. However, Deformable-DETR[4] is not a real-time object detection domain and it takes a long time to train (325+ hours on NVIDIA Tesla V100 GPU). The performance of Deformable-DETR is as follows:
-
-|Model|Param.| GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|FPS |
-|---|---|---|---|---|---|
-|SPAFPN-C2f-M|28.3M|89.4|50.6%|67.4%|403|
-|SPAFPN-HG-M|25.0M|90.5|51.2%|68.4%|351|
-|Deformable DETR|40.0M|173|46.2%|65.2%|<20|
-
-The application of SPAFPN on Deformable-DETR was intractable for our computational resources within the period of the official review. Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. RT-DETR achieves SOTA in the DETR family, and alleviates the common problems of too time-consuming training and extremely slow inference speed.
-
-In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. We will provide versions that apply SPAFPN to RT-DETR-R18 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_6x_coco.yml) and RT-DETR-R34 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r34vd_6x_coco.yml).
-
-|Model|Param.|mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|
-|---|---|---|---|
-|RT-DETR-R18|20M|46.4%|63.7%|
-|RT-DETR-SPAFPN-R18|21M|in training|in training|
-|RT-DETR-R34|31M|48.9%|66.8%|
-|RT-DETR-SPAFPN-R34|33M|in training|in training|
-
-The code for RT-DETR-SPAFPN is available. The performance may not be optimal as there was no time to make any hyperparameter adjustments. Some models are still being trained and are expected to be completed within the time frame of the official review. We will inform you as soon as the training is finished. Please accept our sincere apologies.
-
-
-
-
-- ***There is a typo in line 137: "Conv-BN-SLIU" -> "Conv-BN-SiLU"***
-
-**Reply:** Thank you for pointing out our typos. We will correct it in the next version of the paper and carefully check other typos that may appear.
-
-
 
 
 *[1] Songtao Liu, Di Huang, and Yunhong Wang. Learning spatial fusion for single-shot object detection. arXiv preprint arXiv:1911.09516, 2019.*

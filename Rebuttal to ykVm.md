@@ -27,7 +27,7 @@ What we are really saying here is that if a more complex operation (e.g., additi
 Conventionally, we refer to the processed channels as hidden channels. In [1], they also performed ablation experiments for the proportion of hidden channels in their Table 1. We have also done similar ablation experiments for our proposed model as follows:
 
 **Ablation study on the proportion of hidden channels in CSP-DCN**
-| Model |e| Param. | GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub> |
+| Model |e| Param. | GFLOPs | $mAP_(val)^(50-95)$ | $mAP_(val)^(50)$ |
 |---|---|---|---|---|---|
 |SPAFPN-C2f-n|0.25|3.2M|9.7|39.6%|55.6%|
 |SPAFPN-C2f-n|0.5|3.7M|10.7|41.2%|57.3%|
@@ -68,7 +68,7 @@ Because there are too many references in this paragraph, the rebuttal version om
 
 In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. We will provide versions that apply SPAFPN to RT-DETR-R18 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_6x_coco.yml) and RT-DETR-R34 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r34vd_6x_coco.yml).
 
-|Model|Param.|mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|
+|Model|Param.|$mAP_(val)^(50-95)$ | $mAP_(val)^(50)$|
 |---|---|---|---|
 |RT-DETR-R18|20M|46.4%|63.7%|
 |RT-DETR-SPAFPN-R18|21M|in training|in training|

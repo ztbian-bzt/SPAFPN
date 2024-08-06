@@ -72,7 +72,7 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 
 - ***As object detection is a well-established area, improving over state-of-the-art is important. Can the SPAFPN improve current leading DETR frameworks (e.g., Deformable-DETR)?***
 
-**Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models, to verify its generality and portability. However, Deformable-DETR is not a real-time object detection domain and it takes a long time to train (325+ hours on NVIDIA Tesla V100 GPU). The performance of Deformable-DETR is as follows:
+**Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models, to verify its generality and portability. However, Deformable-DETR[4] is not a real-time object detection domain and it takes a long time to train (325+ hours on NVIDIA Tesla V100 GPU). The performance of Deformable-DETR is as follows:
 
 |Model|Param.| GFLOPs | mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|FPS |
 |---|---|---|---|---|---|
@@ -80,10 +80,18 @@ Thank you for pointing out that we are missing FPS data in some tables. Table 2,
 |SPAFPN-HG-M|25.0M|90.5|51.2%|68.4%|351|
 |Deformable DETR|40.0M|173|46.2%|65.2%|<20|
 
-Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. 
+The application of SPAFPN on Deformable-DETR was intractable for our computational resources within the period of the official review. Instead, we will apply SPAFPN to RT-DETR(CVPR 2024)[5], which is a work in the field of real-time object detection. RT-DETR achieves SOTA in the DETR family, and alleviates the common problems of too time-consuming training and extremely slow inference speed.
 
-Due to the problem of slow convergence, the pre-trained weights of the backbone network are widely used in the training of the DETR series of detectors until the latest RT-DETR. So, we provide here the pre-trained version and the trained from scratch version of RT-DETR-SPAFPN-L.
+In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. We will provide versions that apply SPAFPN to RT-DETR-R18 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_6x_coco.yml) and RT-DETR-R34 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r34vd_6x_coco.yml).
 
+|Model|Param.|mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|
+|---|---|---|---|
+|RT-DETR-R18|20M|46.4%|63.7%|
+|RT-DETR-SPAFPN-R18|21M|in training|in training|
+|RT-DETR-R34|31M|48.9%|66.8%|
+|RT-DETR-SPAFPN-R34|33M|in training|in training|
+
+The code for RT-DETR-SPAFPN is available. The performance may not be optimal as there was no time to make any hyperparameter adjustments.
 
 
 

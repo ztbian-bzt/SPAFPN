@@ -65,7 +65,18 @@ Because there are too many references in this paragraph, the rebuttal version om
 - ***The YOLO series' inherent limitations, including NMS post-processing, may hinder SPAFPN's effectiveness in real-time object detection. While the authors showed in the appendix that NMS limitations can be mitigated with recent technical advances, they did not discuss whether SPAFPN can integrate with other end-to-end detectors like RT-DETR.***
 
 **Reply:** Thank you for your excellent advice. We do need to apply SPAFPN to other models, especially DETR models (e.g. RT-DETR[2]), to verify its generality and portability. 
-In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. Due to the problem of slow convergence, the pre-trained weights of the backbone network are widely used in the training of the DETR series of detectors until the latest RT-DETR. So, we provide here the pre-trained version and the trained from scratch version of RT-DETR-SPAFPN-L.
+
+In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like structure. So we will replace CCFF with our SPAFPN. At this time, SPAFPN uses CSPRepLayer (RT-DETR/rtdetr_pytorch/src/zoo/rtdetr/hybrid_encoder.py Line 88), a neck feature extraction module consistent with RT-DETR. We will provide versions that apply SPAFPN to RT-DETR-R18 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_6x_coco.yml) and RT-DETR-R34 (RT-DETR/rtdetr_pytorch/configs/rtdetr/rtdetr_r34vd_6x_coco.yml).
+
+|Model|Param.|mAP<sup>val</sup><sub>50-95</sub> | mAP<sup>val</sup><sub>50</sub>|
+|---|---|---|---|
+|RT-DETR-R18|20M|46.4%|63.7%|
+|RT-DETR-SPAFPN-R18|21M|in training|in training|
+|RT-DETR-R34|31M|48.9%|66.8%|
+|RT-DETR-SPAFPN-R34|33M|in training|in training|
+
+The code for RT-DETR-SPAFPN is available. The performance may not be optimal as there was no time to make any hyperparameter adjustments.
+
 
 
 

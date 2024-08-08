@@ -46,7 +46,7 @@ In RT-DETR, CNN-based Cross-scale Feature Fusion (CCFF) module is a PAFPN-like s
 |Model|Param.|$mAP_{val}^{50-95}$ | $mAP_{val}^{50}$|
 |---|---|---|---|
 |RT-DETR-R18|20M|46.4%|63.7%|
-|RT-DETR-SPAFPN-R18|21M|in training|in training|
+|RT-DETR-SPAFPN-R18|21M|47.3%|64.3%|
 |RT-DETR-R34|31M|48.9%|66.8%|
 |RT-DETR-SPAFPN-R34|33M|in training|in training|
 

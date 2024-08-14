@@ -29,15 +29,15 @@ $$P3-2 = β_3α_3(F(P3-1, P4-1, \textcolor{#FF0000}{P5-1}), P3-1, β_4α_4(P4-1,
 
 Where, $α_i$ is a simple alignment operation on the Pi scale, which generally only includes 1*1 convolution for adjusting channel number, up-and-down sampling, and Concatenate operations; $β_i$ is a feature extraction module on Pi scale, which has a much more complex structure than $α_i$; $F$ is the multi-scale feature fusion module.  Equation 1 is the usual PAFPN, and Equation 2 is the SPAFPN version. It can be found that if $F$ is constructed by simple operations similar to $β_i$, there is a P5-1 term in Formula 2 that can reach P3-2 by only one feature extraction module compared with Formula 1. This makes the features on P5-1 more directly accessible to P3-2.
 
-Based on the above ablation experiments and conjectures, we propose the strategy of "Light Fusion, Heavy Decouple" to design Pyramid Fusion more simply. At the same time, the commonly used bilinear up-sampling and Conv down-sampling are replaced, which slightly improves the performance(refer to Table 11).
+Based on the above ablation experiments and conjectures, we propose the strategy of "Light Fusion, Heavy Decouple" to design Pyramid Fusion more simply. Since the Light Fusion strategy has been taken, to make up for the lack of fusion effect as much as possible, this motivates us to look at the sampling modules. Thus, the commonly used bilinear up-sampling and Conv down-sampling are replaced, which slightly improves the performance(refer to Table 11).
 
 **(2) Multi-Concat Module**
 
 In the structure of SPAFPN, due to the additional global input obtained by multi-scale fusion, how to decouple the fused global features and combine them with the features of the local layer is a problem that needs to be considered more.
 
-As shown in Figure.3(c), we adopt the practice of concatenate channel after sampling in traditional FPN for adjacent scale input x_high/low and local scale input x_local. We refer to Squeeze-and-excitation[8] and Coordinate attention[9], and treat the global features x_global after aligning scales and channels as the corresponding weight elements of the local features, which are directly weighted by multiplication. Finally, the local features weighted by the global features are obtained.
+As shown in Figure.3(c), we adopt the practice of concatenate channel after sampling in traditional FPN for adjacent scale input x_high/low and local scale input x_local. We refer to Squeeze-and-excitation[8] and Coordinate attention[9], and treat the global features x_global after aligning scales and channels as the corresponding weight elements of the local features, which are directly weighted by multiplication. Finally, the local features weighted by the global features are obtained. We also add a set of identity maps such that Mult-Concat can degenerate to the traditional Concat module when the input global feature is empty.
 
-We also add a set of identity maps such that Mult-Concat can degenerate to the traditional Concat module when the input global feature is empty.
+In addition, we propose the full-node strategy according to the characteristics of SPAFPN. In the BiFPN paper, the authors presented the idea that if there is only one input to a node and no feature fusion, this node has little impact on the feature network and can be removed. This view is reflected in practice in PAFPN-like structures, which neglected the nodes of layer P5 in FPN and layer P3 in PAN. These two nodes are consistent with a single input and no feature fusion. But in SPAFPN, the global features from PFusion can be extra inputs to these two edge nodes, making it possible for all nodes to be exploited(refer to Table 3).
 
 **(3) CSP-DCN Module**
 

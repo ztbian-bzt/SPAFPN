@@ -5,7 +5,7 @@ In this paper, we propose the Scarf Path Aggregation Feature Pyramid Network (SP
 
 |Model|Size|Param.| GFLOPs | mAP<sup>val</sup><sub>50-95</sub> |FPS<sub>RTX4090,half,b32,pytorch</sub>|
 |---|---|---|---|---|---|
-|[SPAFPN-C2f-n](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-C2f.pt)|640|3.7M|10.7|41.2%|787|
+|[SPAFPN-C2f-n](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-C2f.pt)|640|3.7M|10.7|41.2%|797|
 |[SPAFPN-C2f-s](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNs-C2f.pt)|640|13.1M|34.9|47.2%|573|
 |[SPAFPN-C2f-m](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNm-C2f.pt)|640|28.3M|89.4|50.6%|403|
 |[SPAFPN-GELAN-N](https://github.com/ztbian-bzt/SPAFPN-assets/releases/download/v0.0.0-beta/SPAFPNn-GELAN.pt)|640|3.4M|10.9|42.6%|579|

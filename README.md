@@ -30,7 +30,7 @@ In this paper, we propose the Scarf Path Aggregation Feature Pyramid Network (SP
 Create environmemt. 
 
 Make sure the **torch version matches cuda**.
-We use and recommend python 3.8,  torch 2.1.1, torchvision 0.16.1, torchaudio 0.9.0 and cuda 11.8.
+We use and recommend python 3.8,  torch 2.1.1, torchvision 0.16.1, torchaudio 2.1.1 and cuda 11.8.
 The torch installation command we used is `pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118`. If you want to use the same torch, uncomment the third line of setup.sh.
 
 ```
